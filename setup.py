@@ -31,8 +31,11 @@ def find_stub_files():
 
 setup(
     name="Flask-HTTPAuth-stubs",
-    # py_modules=['flask_httpauth_stubs'],
-    install_requires=["mypy>=0.720", "typing-extensions>=3.7.4"],
+    install_requires=[
+        "mypy>=0.720",
+        "typing-extensions>=3.7.4",
+        "Flask-HTTPAuth>=4.0.0",
+    ],
     packages=["flask_httpauth-stubs"],
     package_data={"flask_httpauth-stubs": find_stub_files()},
 )
