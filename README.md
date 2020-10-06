@@ -16,4 +16,15 @@ $ pip install flask-httpauth-stubs
 ## Usage
 
 Mypy will automatically use the type annotations in this package, once it is
-installed.
+installed. You just need to annotate your code:
+
+```python
+from typing import Optional
+from flask_httpauth import HTTPAuth, Authorization
+
+
+def foo(bar: HTTPAuth) -> Optional[Authorization]:
+    return bar.get_auth()
+```
+
+For general hints how to use type annotations, please read [Type Annotations in Python 3.8](https://medium.com/analytics-vidhya/type-annotations-in-python-3-8-3b401384403d)
