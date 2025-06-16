@@ -1,10 +1,13 @@
 from typing import (
     Callable,
+    List,
     Optional,
-    Tuple,
     Union,
 )
 from werkzeug.datastructures import Authorization
+
+RoleType = Optional[Union[str, List[str], List[List[str]]]]
+
 
 class HTTPAuth:
     def __init__(
@@ -28,7 +31,7 @@ class HTTPAuth:
     def authenticate_header(self) -> str: ...
     def authorize(
         self,
-        role: Optional[Union[Tuple[str, str], Tuple[Tuple[str, str]], str]],
+        role: RoleType,
         user: Union[str, bool],
         auth: Optional[Authorization],
     ) -> Optional[bool]: ...
@@ -41,7 +44,7 @@ class HTTPAuth:
     def login_required(
         self,
         f: Optional[Callable] = ...,
-        role: Optional[Union[Tuple[str, str], Tuple[Tuple[str, str]], str]] = ...,
+        role: RoleType = ...,
         optional: Optional[bool] = ...,
     ) -> Callable: ...
     def username(self) -> str: ...
@@ -131,5 +134,7 @@ class MultiAuth:
         self.additional_auth = args
     def current_user(self) -> Optional[str]: ...
     def login_required(
-        self, f: Optional[Callable] = ..., role: Optional[str] = ...
+        self,
+        f: Optional[Callable] = ...,
+        role: RoleType = ...,
     ) -> Callable: ...
